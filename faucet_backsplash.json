@@ -1,0 +1,25 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "New set 1": {
+            "block_sz": "[133, 81]",
+            "block_thickness": "2.6000000000000001",
+            "pipe_radius": "12.5",
+            "screwhole_dia": "6",
+            "separate_split": "true",
+            "split": "true"
+        },
+        "New set 2": {
+            "$fn": "100",
+            "block_sz": "[133, 81]",
+            "block_thickness": "25.399999999999999",
+            "pipe_radius": "12.5",
+            "screwhole_center_offset": "25",
+            "screwhole_countersink_depth": "4",
+            "screwhole_countersink_dia": "8.3000000000000007",
+            "screwhole_dia": "6",
+            "separate_split": "true",
+            "split": "true"
+        }
+    }
+}

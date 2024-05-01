@@ -67,7 +67,9 @@ module cutter_no_middleteeth(male=false) {
         union() {
             cutter(position=position, dimension=dimension, teeths=teeth, male=male);
             translate([dimension.x/3, dimension.y/2-teeth[1]/2-teeth[2]*1.5,-dimension.z/2])
-            cube([dimension.x/3, teeth[1], dimension.z]);
+                cube([dimension.x/3, teeth[1], dimension.z]);
+            translate([0,-dimension.y/2+teeth[1]/2-teeth[2]*1.5,dimension.z/2])
+                cube([dimension.x, dimension.y, dimension.z*2]);
         }
     } else {
         difference() {
@@ -75,17 +77,19 @@ module cutter_no_middleteeth(male=false) {
             translate([dimension.x/3, dimension.y/2-teeth[1]/2-0.1,-dimension.z/2-0.5])
             cube([dimension.x/3, teeth[1], dimension.z+1]);
         }
+        translate([0,dimension.y/2+teeth[1]/2-teeth[2]/2,0])
+            cube([dimension.x, dimension.y, dimension.z*2]);
     }
 }
 
 module split_pipeblock(separate=false) {
-    cut_rotation=20;
-    xoffset=9+(block_thickness/tan(90-cut_rotation));
+    cut_rotation=0;
+    xoffset=4+(block_thickness/tan(90-cut_rotation));
     translate([separate ? 30 : 0,0,0]) {
         difference() {
         intersection() {
             pipeblock();
-            translate([block_sz.x+xoffset,0,block_thickness*2])
+            translate([block_sz.x+xoffset,0,9.75+4])
             rotate([cut_rotation,0,90])
             translate([0,0,-block_thickness*3])
             cutter_no_middleteeth(male=true);
@@ -98,7 +102,7 @@ module split_pipeblock(separate=false) {
 
     intersection() {
         pipeblock();
-        translate([block_sz.x+xoffset,0,block_thickness*2])
+        translate([block_sz.x+xoffset,0,9.75+4])
         rotate([cut_rotation,0,90])
         translate([0,0,-block_thickness*3])
         cutter_no_middleteeth(male=false);
